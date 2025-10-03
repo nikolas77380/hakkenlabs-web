@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -14,16 +16,24 @@ export const metadata: Metadata = {
   description: "Cosmic innovation and futuristic solutions",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${manrope.variable} antialiased`}>
-        {children}
-        <Toaster />
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+        >
+          {children}
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

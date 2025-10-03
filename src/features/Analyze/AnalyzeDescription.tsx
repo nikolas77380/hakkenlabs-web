@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface AnalyzeFeature {
   title: string;
@@ -9,54 +10,32 @@ interface AnalyzeFeature {
   features: string[];
 }
 
-const descriptions: AnalyzeFeature[] = [
-  {
-    title: "Deep Dive Analysis",
-    description:
-      "Comprehensive evaluation of token fundamentals and market dynamics:",
-    icon: "🔍",
-    gradient: "from-blue-400 to-cyan-500",
-    features: [
-      "Technical analysis of smart contract code and architecture",
-      "Economic model assessment and tokenomics evaluation",
-      "Market cap analysis and liquidity assessment",
-      "Competitive positioning and market share analysis",
-      "Development team background and project roadmap review",
-      "Community engagement and social sentiment metrics",
-    ],
-  },
-  {
-    title: "Security Assessment",
-    description: "Thorough security audit and risk evaluation framework:",
-    icon: "🛡️",
-    gradient: "from-green-400 to-emerald-500",
-    features: [
-      "Smart contract vulnerability scanning and audit results",
-      "Multi-signature wallet security and key management",
-      "Governance token security and voting mechanisms",
-      "Liquidity pool security and impermanent loss analysis",
-      "Regulatory compliance and legal risk assessment",
-      "Historical security incidents and response protocols",
-    ],
-  },
-  {
-    title: "Trading Intelligence",
-    description:
-      "Advanced market analysis and trading opportunity identification:",
-    icon: "📈",
-    gradient: "from-orange-400 to-red-500",
-    features: [
-      "Real-time price action analysis and trend identification",
-      "Volume profile analysis and support/resistance levels",
-      "Technical indicators and chart pattern recognition",
-      "Market sentiment analysis and social media monitoring",
-      "Arbitrage opportunities and cross-exchange analysis",
-      "Risk-reward ratio calculations and position sizing",
-    ],
-  },
-];
+function getDescriptions(
+  t: ReturnType<typeof useTranslations>,
+): AnalyzeFeature[] {
+  const cards = t.raw("analyzeDescription.cards") as Array<{
+    title: string;
+    description: string;
+    features: string[];
+  }>;
+  const icons = ["🔍", "🛡️", "📈"];
+  const gradients = [
+    "from-blue-400 to-cyan-500",
+    "from-green-400 to-emerald-500",
+    "from-orange-400 to-red-500",
+  ];
+  return cards.map((card, idx) => ({
+    title: card.title,
+    description: card.description,
+    icon: icons[idx] ?? "✨",
+    gradient: gradients[idx] ?? "from-slate-400 to-slate-600",
+    features: card.features,
+  }));
+}
 
 const AnalyzeDescription = () => {
+  const t = useTranslations();
+  const descriptions = getDescriptions(t);
   return (
     <div className="grid md:grid-cols-3 gap-6 mt-16">
       {descriptions.map((feature) => (
