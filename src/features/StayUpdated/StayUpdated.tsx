@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 export default function StayUpdated() {
   const t = useTranslations("subscribe");
   return (
-    <div className="max-w-2xl mx-auto text-center">
+    <div className="max-w-2xl mx-auto text-center px-6">
       <div className="mb-8">
         <div className="flex justify-center mb-6">
           <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">

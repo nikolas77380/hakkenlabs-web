@@ -19,13 +19,13 @@ const Header = async () => {
         />
       </div>
       <div className="flex items-center gap-3">
-        <LocaleSwitcherSelect />
         <Button
           variant="outline"
           size="sm"
         >
           {t("cta")}
         </Button>
+        <LocaleSwitcherSelect />
       </div>
     </header>
   );

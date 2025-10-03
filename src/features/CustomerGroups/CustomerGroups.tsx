@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 interface CustomerGroup {
   id: string;
   title: string;
@@ -18,7 +19,11 @@ function getCustomerGroups(
     description: string;
     features: string[];
   }>;
-  const icons = ["📊", "⚡", "🎨"];
+  const icons = [
+    "/assets/begginers.png",
+    "/assets/traders.png",
+    "/assets/creators.png",
+  ];
   const gradients = [
     "from-green-400 to-blue-500",
     "from-orange-400 to-red-500",
@@ -48,7 +53,9 @@ export default function CustomerGroups() {
         <div
           key={group.id}
           className={`w-full flex items-center justify-center px-6 py-8 ${
-            index % 2 === 1 ? "bg-gray-50/10" : ""
+            index % 2 === 1
+              ? "bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-[1px]"
+              : ""
           }`}
         >
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
@@ -82,9 +89,14 @@ export default function CustomerGroups() {
               }`}
             >
               <div
-                className={`w-48 h-48 bg-gradient-to-br ${group.gradient} rounded-2xl flex items-center justify-center text-white text-4xl`}
+                className={`w-58 h-58 bg-gradient-to-br ${group.gradient} rounded-2xl flex items-center justify-center text-white text-4xl overflow-hidden`}
               >
-                {group.icon}
+                <Image
+                  src={group.icon}
+                  alt={group.title}
+                  width={300}
+                  height={300}
+                />
               </div>
             </div>
           </div>
