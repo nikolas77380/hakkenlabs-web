@@ -3,6 +3,9 @@
     "hero": {
       "title": "Analyze Any Token",
       "subtitle": "Get comprehensive risk scores, human-readable descriptions, and actionable insights for any crypto token."
+    },
+    "localeSwitcher": {
+      "label": "Language"
     }
   },
   "analyzeForm": {

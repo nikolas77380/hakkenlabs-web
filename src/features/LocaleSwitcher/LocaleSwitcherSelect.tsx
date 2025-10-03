@@ -3,22 +3,15 @@
 import * as Select from "@radix-ui/react-select";
 import clsx from "clsx";
 import { useTransition } from "react";
-import { Locale } from "@/i18n/config";
+import { Locale, localeItems } from "@/i18n/config";
 import { setUserLocale } from "@/services/locale";
+import { useLocale, useTranslations } from "next-intl";
 
-interface LocaleItem {
-  value: string;
-  label: string;
-}
-
-interface Props {
-  defaultValue: string;
-  items: Array<LocaleItem>;
-  label: string;
-}
-
-export function LocaleSwitcherSelect({ defaultValue, items, label }: Props) {
+export function LocaleSwitcherSelect() {
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("main.localeSwitcher");
+
+  const locale = useLocale();
 
   function onChange(value: string) {
     const locale = value as Locale;
@@ -30,11 +23,11 @@ export function LocaleSwitcherSelect({ defaultValue, items, label }: Props) {
   return (
     <div className="relative">
       <Select.Root
-        defaultValue={defaultValue}
+        defaultValue={locale}
         onValueChange={onChange}
       >
         <Select.Trigger
-          aria-label={label}
+          aria-label={t("label")}
           className={clsx(
             "rounded-sm p-2 transition-colors hover:bg-slate-200",
             isPending && "pointer-events-none opacity-60",
@@ -51,7 +44,7 @@ export function LocaleSwitcherSelect({ defaultValue, items, label }: Props) {
             position="popper"
           >
             <Select.Viewport>
-              {items.map((item) => (
+              {localeItems.map((item) => (
                 <Select.Item
                   key={item.value}
                   className="flex cursor-default items-center px-3 py-2 text-base data-[highlighted]:bg-slate-100"
