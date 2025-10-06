@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,20 +27,21 @@ import {
 const FormSchema = z.object({
   blockchain: z
     .string({
-      required_error: "Please select a blockchain.",
+      required_error: "analyzeForm.errors.blockchainRequired",
     })
-    .min(1, "Blockchain is required"),
+    .min(1, "analyzeForm.errors.blockchainMin"),
   contractAddress: z
     .string({
-      required_error: "Please enter a contract address.",
+      required_error: "analyzeForm.errors.addressRequired",
     })
-    .min(42, "Contract address must be at least 42 characters")
-    .regex(/^0x[a-fA-F0-9]{40}$/, "Invalid Ethereum contract address format"),
+    .min(42, "analyzeForm.errors.addressMin")
+    .regex(/^0x[a-fA-F0-9]{40}$/, "analyzeForm.errors.addressInvalid"),
 });
 
 type FormData = z.infer<typeof FormSchema>;
 
 const AnalyzeForm = () => {
+  const t = useTranslations();
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -49,8 +51,11 @@ const AnalyzeForm = () => {
   });
 
   function onSubmit(data: FormData) {
-    toast("Analysis started", {
-      description: `Analyzing ${data.contractAddress} on ${data.blockchain}`,
+    toast(t("analyzeForm.toast.title"), {
+      description: t("analyzeForm.toast.desc", {
+        contract: data.contractAddress,
+        chain: data.blockchain,
+      }),
     });
 
     // Here you would typically make an API call to analyze the contract
@@ -70,22 +75,31 @@ const AnalyzeForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Select Blockchain</FormLabel>
+                {/* Labels translated */}
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select blockchain" />
+                      <SelectValue
+                        placeholder={t("analyzeForm.placeholders.blockchain")}
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="ethereum">Ethereum (ETH)</SelectItem>
-                    <SelectItem value="polygon">Polygon (MATIC)</SelectItem>
-                    <SelectItem value="bsc">
-                      Binance Smart Chain (BNB)
+                    <SelectItem value="ethereum">
+                      {t("analyzeForm.options.ethereum")}
                     </SelectItem>
-                    <SelectItem value="arbitrum">Arbitrum (ARB)</SelectItem>
+                    <SelectItem value="polygon">
+                      {t("analyzeForm.options.polygon")}
+                    </SelectItem>
+                    <SelectItem value="bsc">
+                      {t("analyzeForm.options.bsc")}
+                    </SelectItem>
+                    <SelectItem value="arbitrum">
+                      {t("analyzeForm.options.arbitrum")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -98,10 +112,10 @@ const AnalyzeForm = () => {
             name="contractAddress"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contract Address</FormLabel>
+                <FormLabel>{t("analyzeForm.labels.contractAddress")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="0x..."
+                    placeholder={t("analyzeForm.placeholders.contractAddress")}
                     inputMode="text"
                     className="min-w-[320px]"
                     {...field}
@@ -117,7 +131,7 @@ const AnalyzeForm = () => {
             variant="secondary"
             className="md:w-auto w-full mt-6"
           >
-            Analyze Token
+            {t("analyzeForm.cta")}
           </Button>
         </div>
       </form>

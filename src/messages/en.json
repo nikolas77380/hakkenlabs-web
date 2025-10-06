@@ -1,0 +1,136 @@
+{
+  "main": {
+    "hero": {
+      "title": "Analyze Any Token",
+      "subtitle": "Get comprehensive risk scores, human-readable descriptions, and actionable insights for any crypto token."
+    },
+    "localeSwitcher": {
+      "label": "Language"
+    }
+  },
+  "analyzeForm": {
+    "labels": {
+      "blockchain": "Select Blockchain",
+      "contractAddress": "Contract Address"
+    },
+    "placeholders": {
+      "blockchain": "Select blockchain",
+      "contractAddress": "0x..."
+    },
+    "options": {
+      "ethereum": "Ethereum (ETH)",
+      "polygon": "Polygon (MATIC)",
+      "bsc": "Binance Smart Chain (BNB)",
+      "arbitrum": "Arbitrum (ARB)"
+    },
+    "cta": "Analyze Token",
+    "toast": {
+      "title": "Analysis started",
+      "desc": "Analyzing {contract} on {chain}"
+    },
+    "errors": {
+      "blockchainRequired": "Please select a blockchain.",
+      "blockchainMin": "Blockchain is required",
+      "addressRequired": "Please enter a contract address.",
+      "addressMin": "Contract address must be at least 42 characters",
+      "addressInvalid": "Invalid Ethereum contract address format"
+    }
+  },
+  "analyzeDescription": {
+    "cards": [
+      {
+        "title": "Deep Dive Analysis",
+        "description": "Comprehensive evaluation of token fundamentals and market dynamics:",
+        "features": [
+          "Technical analysis of smart contract code and architecture",
+          "Economic model assessment and tokenomics evaluation",
+          "Market cap analysis and liquidity assessment",
+          "Competitive positioning and market share analysis",
+          "Development team background and project roadmap review",
+          "Community engagement and social sentiment metrics"
+        ]
+      },
+      {
+        "title": "Security Assessment",
+        "description": "Thorough security audit and risk evaluation framework:",
+        "features": [
+          "Smart contract vulnerability scanning and audit results",
+          "Multi-signature wallet security and key management",
+          "Governance token security and voting mechanisms",
+          "Liquidity pool security and impermanent loss analysis",
+          "Regulatory compliance and legal risk assessment",
+          "Historical security incidents and response protocols"
+        ]
+      },
+      {
+        "title": "Trading Intelligence",
+        "description": "Advanced market analysis and trading opportunity identification:",
+        "features": [
+          "Real-time price action analysis and trend identification",
+          "Volume profile analysis and support/resistance levels",
+          "Technical indicators and chart pattern recognition",
+          "Market sentiment analysis and social media monitoring",
+          "Arbitrage opportunities and cross-exchange analysis",
+          "Risk-reward ratio calculations and position sizing"
+        ]
+      }
+    ]
+  },
+  "customers": {
+    "title": "Build for every type of crypto investor",
+    "groups": [
+      {
+        "id": "beginners",
+        "title": "Beginner Crypto Investors",
+        "description": "Perfect for those just starting their crypto journey:",
+        "features": [
+          "Simple risk scores with clear color coding (green/yellow/red)",
+          "Plain explanations of complex metrics",
+          "Beginner-friendly warnings and safety tips",
+          "Risk tolerance assessment and recommendations"
+        ]
+      },
+      {
+        "id": "traders",
+        "title": "Active Retail Traders",
+        "description": "Designed for experienced traders who need quick insights:",
+        "features": [
+          "Real-time market indicators and price alerts",
+          "Advanced sentiment analysis and social media trends",
+          "Quick decision reports with actionable recommendations",
+          "Technical analysis integration and chart patterns",
+          "Portfolio risk assessment and diversification tips"
+        ]
+      },
+      {
+        "id": "creators",
+        "title": "Creators & Influencers",
+        "description": "Perfect tools for content creators and crypto influencers:",
+        "features": [
+          "Share credible analytics with your audience",
+          "Exportable visuals and infographics for social media",
+          "White-label reports with your branding",
+          "Custom analysis tools for your specific niche"
+        ]
+      }
+    ]
+  },
+  "platform": {
+    "badge": "Coming Soon",
+    "title": "Full Web Platform",
+    "desc1": "We're building a comprehensive web platform with advanced features, detailed analytics, and portfolio tracking tools.",
+    "desc2": "Currently, HakkenLabs is available as a Telegram bot. Get instant token analysis and risk scores directly in your messaging app.",
+    "ctaInfo": "Want early access to our web platform? Subscribe to our Telegram bot and be the first to know when we launch!",
+    "cta": "Subscribe to Telegram Bot"
+  },
+  "subscribe": {
+    "title": "Stay Updated",
+    "desc": "Get the latest crypto insights, platform updates, and be the first to know when we launch new features",
+    "placeholder": "your.email@example.com",
+    "cta": "Subscribe",
+    "footnote": "Join 5,000+ crypto enthusiasts who trust HakkenLabs for market insights. Unsubscribe anytime."
+  },
+  "header": {
+    "cta": "Join Telegram Bot"
+  }
+}

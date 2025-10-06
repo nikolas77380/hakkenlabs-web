@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function StayUpdated() {
+  const t = useTranslations("subscribe");
   return (
-    <div className="max-w-2xl mx-auto text-center">
+    <div className="max-w-2xl mx-auto text-center px-6">
       <div className="mb-8">
         <div className="flex justify-center mb-6">
           <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
@@ -27,13 +29,10 @@ export default function StayUpdated() {
         </div>
 
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-          Stay Updated
+          {t("title")}
         </h2>
 
-        <p className="text-lg text-[var(--color-muted)] mb-8">
-          Get the latest crypto insights, platform updates, and be the first to
-          know when we launch new features
-        </p>
+        <p className="text-lg text-[var(--color-muted)] mb-8">{t("desc")}</p>
       </div>
 
       <form
@@ -44,7 +43,7 @@ export default function StayUpdated() {
         className="flex flex-col sm:flex-row gap-3 mb-6"
       >
         <Input
-          placeholder="your.email@example.com"
+          placeholder={t("placeholder")}
           type="email"
           required
           className="flex-1"
@@ -53,7 +52,7 @@ export default function StayUpdated() {
           type="submit"
           variant="outline"
         >
-          Subscribe
+          {t("cta")}
           <svg
             className="ml-2 w-4 h-4"
             fill="none"
@@ -70,10 +69,7 @@ export default function StayUpdated() {
         </Button>
       </form>
 
-      <p className="text-sm text-[var(--color-muted)]">
-        Join 5,000+ crypto enthusiasts who trust HakkenLabs for market insights.
-        Unsubscribe anytime.
-      </p>
+      <p className="text-sm text-[var(--color-muted)]">{t("footnote")}</p>
     </div>
   );
 }

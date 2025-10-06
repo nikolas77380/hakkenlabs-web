@@ -1,8 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
+import { LocaleSwitcherSelect } from "../../features/LocaleSwitcher/LocaleSwitcherSelect";
+import { getTranslations } from "next-intl/server";
 
-const Header = () => {
+const Header = async () => {
+  const t = await getTranslations("header");
   return (
     <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -20,8 +23,9 @@ const Header = () => {
           variant="outline"
           size="sm"
         >
-          Join Telegram Bot
+          {t("cta")}
         </Button>
+        <LocaleSwitcherSelect />
       </div>
     </header>
   );
