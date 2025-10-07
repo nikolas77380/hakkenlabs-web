@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ArrowUpRightFromSquare } from "lucide-react";
 import React from "react";
@@ -31,7 +33,12 @@ export default function FullWebPlatform() {
             {t("ctaInfo")}
           </p>
 
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            onClick={() => {
+              window.open("https://t.me/hakkenlabs_bot", "_blank");
+            }}
+          >
             {t("cta")} <ArrowUpRightFromSquare />
           </Button>
         </div>

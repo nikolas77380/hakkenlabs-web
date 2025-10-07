@@ -12,7 +12,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -34,11 +33,25 @@ const FormSchema = z.object({
     .string({
       required_error: "analyzeForm.errors.addressRequired",
     })
-    .min(42, "analyzeForm.errors.addressMin")
+    .min(2, "analyzeForm.errors.addressMin")
     .regex(/^0x[a-fA-F0-9]{40}$/, "analyzeForm.errors.addressInvalid"),
 });
 
 type FormData = z.infer<typeof FormSchema>;
+
+const BLOCKCHAIN_NETWORKS = [
+  {
+    value: "ethereum",
+    name: "analyzeForm.options.ethereum",
+    isAvailable: true,
+  },
+  { value: "solana", name: "analyzeForm.options.solana", isAvailable: false },
+  {
+    value: "arbitrum",
+    name: "analyzeForm.options.arbitrum",
+    isAvailable: false,
+  },
+];
 
 const AnalyzeForm = () => {
   const t = useTranslations();
@@ -72,9 +85,8 @@ const AnalyzeForm = () => {
           <FormField
             control={form.control}
             name="blockchain"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel>Select Blockchain</FormLabel>
                 {/* Labels translated */}
                 <Select
                   onValueChange={field.onChange}
@@ -88,21 +100,23 @@ const AnalyzeForm = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="ethereum">
-                      {t("analyzeForm.options.ethereum")}
-                    </SelectItem>
-                    <SelectItem value="polygon">
-                      {t("analyzeForm.options.polygon")}
-                    </SelectItem>
-                    <SelectItem value="bsc">
-                      {t("analyzeForm.options.bsc")}
-                    </SelectItem>
-                    <SelectItem value="arbitrum">
-                      {t("analyzeForm.options.arbitrum")}
-                    </SelectItem>
+                    {BLOCKCHAIN_NETWORKS.map((network) => (
+                      <SelectItem
+                        key={network.value}
+                        value={network.value}
+                        disabled={!network.isAvailable}
+                      >
+                        {t(network.name)}{" "}
+                        {network.isAvailable
+                          ? ""
+                          : t("analyzeForm.options.comingSoon")}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage>
+                  {fieldState.error?.message && t(fieldState.error?.message)}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -110,9 +124,8 @@ const AnalyzeForm = () => {
           <FormField
             control={form.control}
             name="contractAddress"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel>{t("analyzeForm.labels.contractAddress")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder={t("analyzeForm.placeholders.contractAddress")}
@@ -121,7 +134,9 @@ const AnalyzeForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage>
+                  {fieldState.error?.message && t(fieldState.error?.message)}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -129,7 +144,8 @@ const AnalyzeForm = () => {
           <Button
             type="submit"
             variant="secondary"
-            className="md:w-auto w-full mt-6"
+            className="md:w-auto w-full"
+            disabled={form.formState.isSubmitting}
           >
             {t("analyzeForm.cta")}
           </Button>

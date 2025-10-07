@@ -152,7 +152,7 @@ const FormMessage = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
+  const body = children ? children : error ? String(error?.message) : "";
 
   return (
     <div className="min-h-[20px]">

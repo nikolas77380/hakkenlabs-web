@@ -44,18 +44,13 @@ const AnalyzeDescription = () => {
   const descriptions = getDescriptions(t);
   return (
     <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-16 justify-center">
-      {descriptions.map((feature, index) => (
+      {descriptions.map((feature) => (
         <Card
           key={feature.title}
           className="relative flex-1 min-w-0 md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)]"
         >
           <CardHeader>
-            <div
-              className={cn(
-                "absolute top-[-40px]",
-                index === 2 ? "right-0" : "left-0",
-              )}
-            >
+            <div className="absolute top-[-40px] left-0">
               <Image
                 src={feature.icon}
                 alt={feature.title}

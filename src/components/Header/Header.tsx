@@ -1,11 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { LocaleSwitcherSelect } from "../../features/LocaleSwitcher/LocaleSwitcherSelect";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-const Header = async () => {
-  const t = await getTranslations("header");
+const Header = () => {
+  const t = useTranslations("header");
   return (
     <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -22,6 +24,9 @@ const Header = async () => {
         <Button
           variant="outline"
           size="sm"
+          onClick={() => {
+            window.open("https://t.me/hakkenlabs_bot", "_blank");
+          }}
         >
           {t("cta")}
         </Button>
