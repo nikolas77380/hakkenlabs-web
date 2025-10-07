@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 interface AnalyzeFeature {
   title: string;
