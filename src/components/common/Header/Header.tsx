@@ -3,8 +3,8 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { LocaleSwitcherSelect } from "../../features/LocaleSwitcher/LocaleSwitcherSelect";
 import { useTranslations } from "next-intl";
+import { LocaleSwitcherSelect } from "@/components/features/Main/LocaleSwitcher/LocaleSwitcherSelect";
 
 const Header = () => {
   const t = useTranslations("header");

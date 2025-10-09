@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/common/ui/button";
+import { Input } from "@/components/common/ui/input";
 import React from "react";
 import { useTranslations } from "next-intl";
 

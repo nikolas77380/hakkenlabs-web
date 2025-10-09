@@ -31,11 +31,13 @@ export function useSupportedLanguages(
 
 export function useTokenReport(
   token: string,
+  email: string,
+  lang?: string,
   options?: UseQueryOptions<TokenReportResponse>,
 ) {
   return useQuery<TokenReportResponse>({
     queryKey: ["token-report", token],
-    queryFn: () => api.getTokenReport(token),
+    queryFn: () => api.getTokenReport(token, email, lang),
     enabled: Boolean(token),
     ...options,
   });

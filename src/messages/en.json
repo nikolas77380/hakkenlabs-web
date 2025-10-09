@@ -11,7 +11,7 @@
   "analyzeForm": {
     "placeholders": {
       "blockchain": "Select blockchain",
-      "contractAddress": "Token info (name, symbol, address 0x...)"
+      "contractAddress": "Token (name, symbol, address 0x...)"
     },
     "options": {
       "ethereum": "Ethereum (ETH)",
@@ -130,5 +130,95 @@
   },
   "header": {
     "cta": "Join Telegram Bot"
+  },
+  "common": {
+    "noResults": "No results"
+  },
+  "token": {
+    "notFound": "Token not found",
+    "overview": {
+      "title": "Overview",
+      "dex": "DEX",
+      "pair": "Pair",
+      "decimals": "Decimals",
+      "owner": "Owner",
+      "proxy": "Proxy",
+      "renounced": "Renounced",
+      "canMint": "Can Mint",
+      "canPause": "Can Pause",
+      "canBlacklist": "Can Blacklist",
+      "hasMultisig": "Has Multisig",
+      "hasTimelock": "Has Timelock",
+      "timelockDelay": "Timelock Delay",
+      "totalSupply": "Total Supply",
+      "lastUpdated": "Last Updated",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "market": {
+      "title": "Market",
+      "price": "Price",
+      "marketCap": "Market Cap",
+      "fdv": "FDV",
+      "volume24h": "24h Volume",
+      "liquidity": "Liquidity",
+      "riskScore": "Risk Score"
+    },
+    "holders": {
+      "title": "Holders",
+      "totalHolders": "Total Holders",
+      "change7d": "Change 7d",
+      "change30d": "Change 30d",
+      "recentChanges": "Recent Changes",
+      "supplyConcentration": "Supply Concentration",
+      "distribution": "Holder Distribution",
+      "byAcquisition": "By Acquisition",
+      "noDistributionData": "No distribution data.",
+      "maxConcentration": "Max Concentration: {group} - {percent}%",
+      "minConcentration": "Min Concentration: {group} - {percent}%",
+      "groups": {
+        "shrimps": "Shrimps",
+        "fish": "Fish",
+        "crabs": "Crabs",
+        "octopus": "Octopus",
+        "dolphins": "Dolphins",
+        "sharks": "Sharks",
+        "whales": "Whales"
+      }
+    },
+    "codeRisks": {
+      "title": "Code Risks",
+      "ownerOnlyFunctions": "Owner-only Functions",
+      "mintFunction": "Mint Function",
+      "proxyPattern": "Proxy Pattern",
+      "pauseFunction": "Pause Function",
+      "unsafeExternalCalls": "Unsafe External Calls",
+      "blacklistFunctions": "Blacklist Functions",
+      "comments": "Comments"
+    },
+    "socials": {
+      "title": "Socials",
+      "website": "Website",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "reddit": "Reddit",
+      "discord": "Discord",
+      "github": "GitHub",
+      "medium": "Medium",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "summary": {
+      "title": "Summary"
+    },
+    "header": {
+      "verified": "Verified",
+      "chain": "Chain",
+      "lastUpdated": "Last Updated",
+      "riskScore": "Risk Score"
+    },
+    "description": {
+      "title": "Description"
+    }
   }
 }

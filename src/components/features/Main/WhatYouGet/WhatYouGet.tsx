@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/common/ui/card";
 import React from "react";
 
 interface WhatYouGetFeature {

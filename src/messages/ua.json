@@ -11,7 +11,7 @@
   "analyzeForm": {
     "placeholders": {
       "blockchain": "Оберіть блокчейн",
-      "contractAddress": "Інформація про токен (назва, символ, адреса 0x...)"
+      "contractAddress": "Токен (назва, символ, адреса 0x...)"
     },
     "options": {
       "ethereum": "Ethereum (ETH)",
@@ -130,5 +130,95 @@
   },
   "header": {
     "cta": "Приєднатися до Telegram‑бота"
+  },
+  "common": {
+    "noResults": "Немає результатів"
+  },
+  "token": {
+    "notFound": "Токен не знайдено",
+    "overview": {
+      "title": "Огляд",
+      "dex": "DEX",
+      "pair": "Пара",
+      "decimals": "Десяткові",
+      "owner": "Власник",
+      "proxy": "Проксі",
+      "renounced": "Відмовлено",
+      "canMint": "Може карбувати",
+      "canPause": "Може зупиняти",
+      "canBlacklist": "Може блокувати",
+      "hasMultisig": "Має мультипідпис",
+      "hasTimelock": "Має таймлок",
+      "timelockDelay": "Затримка таймлоку",
+      "totalSupply": "Загальна пропозиція",
+      "lastUpdated": "Останнє оновлення",
+      "yes": "Так",
+      "no": "Ні"
+    },
+    "market": {
+      "title": "Ринок",
+      "price": "Ціна",
+      "marketCap": "Капіталізація",
+      "fdv": "FDV",
+      "volume24h": "Об'єм 24г",
+      "liquidity": "Ліквідність",
+      "riskScore": "Ризик-скоринг"
+    },
+    "holders": {
+      "title": "Холдери",
+      "totalHolders": "Всього холдерів",
+      "change7d": "Зміна 7д",
+      "change30d": "Зміна 30д",
+      "recentChanges": "Останні зміни",
+      "supplyConcentration": "Концентрація пропозиції",
+      "distribution": "Розподіл холдерів",
+      "byAcquisition": "За придбанням",
+      "noDistributionData": "Немає даних про розподіл.",
+      "maxConcentration": "Макс. концентрація: {group} - {percent}%",
+      "minConcentration": "Мін. концентрація: {group} - {percent}%",
+      "groups": {
+        "shrimps": "Крєвєтки",
+        "fish": "Рибки",
+        "crabs": "Крабики",
+        "octopus": "Восьминоги",
+        "dolphins": "Дельфіни",
+        "sharks": "Акули",
+        "whales": "Кити"
+      }
+    },
+    "codeRisks": {
+      "title": "Ризики коду",
+      "ownerOnlyFunctions": "Функції лише власника",
+      "mintFunction": "Функція карбування",
+      "proxyPattern": "Паттерн проксі",
+      "pauseFunction": "Функція паузи",
+      "unsafeExternalCalls": "Небезпечні зовнішні виклики",
+      "blacklistFunctions": "Функції блокування",
+      "comments": "Коментарі"
+    },
+    "socials": {
+      "title": "Соцмережі",
+      "website": "Веб-сайт",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "reddit": "Reddit",
+      "discord": "Discord",
+      "github": "GitHub",
+      "medium": "Medium",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "summary": {
+      "title": "Підсумок"
+    },
+    "header": {
+      "verified": "Верифіковано",
+      "chain": "Мережа",
+      "lastUpdated": "Останнє оновлення",
+      "riskScore": "Ризик-скоринг"
+    },
+    "description": {
+      "title": "Опис"
+    }
   }
 }
