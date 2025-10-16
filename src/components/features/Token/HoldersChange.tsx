@@ -8,6 +8,7 @@ import { Holders } from "@/services/api";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 import HoldersChangeChart from "./charts/HoldersChangeChart";
+import { LucideUsers2 } from "lucide-react";
 
 type Props = {
   holders: Holders;
@@ -17,9 +18,17 @@ const HoldersChange = async ({ holders }: Props) => {
   const t = await getTranslations("token");
 
   return (
-    <Card variant="transparent">
+    <Card
+      variant="transparent"
+      collapsible
+    >
       <CardHeader>
-        <CardTitle>{t("holders.title")}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <LucideUsers2 className="text-secondary" />
+            <span>{t("holders.title")}</span>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="mt-2">

@@ -5,11 +5,26 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { LocaleSwitcherSelect } from "@/components/features/Main/LocaleSwitcher/LocaleSwitcherSelect";
+import { cn } from "@/lib/utils";
 
-const Header = () => {
+const Header = ({
+  maxWidth,
+  className,
+  showLocaleSwitcher = true,
+}: {
+  maxWidth?: string;
+  className?: string;
+  showLocaleSwitcher?: boolean;
+}) => {
   const t = useTranslations("header");
   return (
-    <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <header
+      className={cn(
+        "h-[96px] max-w-6xl mx-auto px-6 py-6 flex items-center justify-between",
+        maxWidth && `max-w-[${maxWidth}]`,
+        className,
+      )}
+    >
       <div className="flex items-center gap-3">
         <Image
           src="/logo.svg"
@@ -17,12 +32,15 @@ const Header = () => {
           width={100}
           height={100}
           color="white"
-          className="text-white h-12 w-auto"
+          onClick={() => {
+            window.location.href = "/";
+          }}
+          className="text-white h-12 w-auto cursor-pointer"
         />
       </div>
       <div className="flex items-center gap-3">
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={() => {
             window.open("https://t.me/hakkenlabs_bot", "_blank");
@@ -30,7 +48,7 @@ const Header = () => {
         >
           {t("cta")}
         </Button>
-        <LocaleSwitcherSelect />
+        {showLocaleSwitcher && <LocaleSwitcherSelect />}
       </div>
     </header>
   );

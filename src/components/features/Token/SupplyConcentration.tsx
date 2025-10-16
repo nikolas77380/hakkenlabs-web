@@ -8,6 +8,7 @@ import { getTranslations } from "next-intl/server";
 import React from "react";
 import HolderSupplyChart from "./charts/HolderSupplyChart";
 import { HoldersSupply } from "@/services/api";
+import { BarChartBig } from "lucide-react";
 
 type Props = {
   holderSupply: HoldersSupply;
@@ -32,9 +33,17 @@ const SupplyConcentration = async ({ holderSupply }: Props) => {
     : undefined;
 
   return (
-    <Card variant="transparent">
+    <Card
+      variant="transparent"
+      collapsible
+    >
       <CardHeader>
-        <CardTitle>{t("holders.supplyConcentration")}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <BarChartBig className="text-secondary" />
+            <span>{t("holders.supplyConcentration")}</span>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="mt-2">

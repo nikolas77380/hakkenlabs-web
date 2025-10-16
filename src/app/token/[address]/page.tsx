@@ -1,12 +1,10 @@
 import StarrySky from "@/components/common/StarrySky/StarrySky";
-import TokenHeader from "@/components/features/Token/TokenHeader";
+import SidePanel from "@/components/features/Token/SidePanel";
 import { api } from "@/services/api";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Header from "@/components/common/Header/Header";
 import Description from "@/components/features/Token/Description";
-import Overview from "@/components/features/Token/Overview";
-import MarketSection from "@/components/features/Token/MarketSection";
 import CodeRisksSection from "@/components/features/Token/CodeRisksSection";
 import SocialsSection from "@/components/features/Token/SocialsSection";
 import SummarySection from "@/components/features/Token/SummarySection";
@@ -43,35 +41,44 @@ export default async function TokenPage({
 
   const details = await api.getTokenDetails(locale, "1", address);
 
+  console.log(details);
+
   if (!details) {
     return <div>{t("notFound")}</div>;
   }
 
   return (
-    <div className="relative overflow-hidden">
-      <Header />
+    <div className="h-screen w-full relative overflow-hidden">
+      <Header
+        maxWidth="1480px"
+        showLocaleSwitcher={false}
+      />
       <StarrySky className="h-full w-full z-0" />
-      <main className="mx-auto max-w-5xl px-4 py-8 space-y-4">
-        <TokenHeader details={details} />
-        <Description description={details.description} />
-        <Overview details={details} />
-        <MarketSection details={details} />
+      <div className="relative w-[97%] mx-auto h-px bg-secondary">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-3 bg-secondary/30 blur-xl" />
+      </div>
+      <div className="pt-6 relative h-[calc(100vh-57px)] overflow-y-auto scrollbar-hide grid grid-cols-1 max-w-[1480px] mx-auto items-start xl:grid-cols-[30vw_1fr]">
+        <SidePanel details={details} />
+        <main className="mx-auto max-w-5xl px-4 space-y-4 pb-16">
+          <Description description={details.description} />
+          {/*<MarketSection details={details} />*/}
 
-        <CodeRisksSection details={details} />
-        {details.holders && <HoldersChange holders={details.holders} />}
-        {details.holders?.holderSupply && (
-          <SupplyConcentration holderSupply={details.holders?.holderSupply} />
-        )}
-        {details.holders?.holderDistribution && (
-          <HoldersDistribution
-            holdersDistribution={details.holders?.holderDistribution}
-          />
-        )}
-        {details.summary && <SummarySection summary={details.summary} />}
-        {details.socialLinks && (
-          <SocialsSection socials={details.socialLinks} />
-        )}
-      </main>
+          <CodeRisksSection details={details} />
+          {details.holders && <HoldersChange holders={details.holders} />}
+          {details.holders?.holderSupply && (
+            <SupplyConcentration holderSupply={details.holders?.holderSupply} />
+          )}
+          {details.holders?.holderDistribution && (
+            <HoldersDistribution
+              holdersDistribution={details.holders?.holderDistribution}
+            />
+          )}
+          {details.summary && <SummarySection summary={details.summary} />}
+          {details.socialLinks && (
+            <SocialsSection socials={details.socialLinks} />
+          )}
+        </main>
+      </div>
     </div>
   );
 }

@@ -5,12 +5,39 @@ import {
   CardTitle,
 } from "@/components/common/ui/card";
 import { TokenDetailsResponse } from "@/services/api";
+import {
+  LucideShieldAlert,
+  XCircle,
+  CheckCircle2,
+  MinusCircle,
+} from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
 type Props = {
   details: TokenDetailsResponse;
 };
+
+function renderBoolean(value: boolean | null | undefined) {
+  if (value === null || value === undefined)
+    return <MinusCircle className="h-4 w-4 text-muted-foreground" />;
+  return value ? (
+    <CheckCircle2 className="h-4 w-4 text-green-500" />
+  ) : (
+    <XCircle className="h-4 w-4 text-red-500" />
+  );
+}
+
+function renderEitherBoolean(
+  a: boolean | null | undefined,
+  b: boolean | null | undefined,
+) {
+  if (a === true || b === true)
+    return <CheckCircle2 className="h-4 w-4 text-green-500" />;
+  if (a === false && b === false)
+    return <XCircle className="h-4 w-4 text-red-500" />;
+  return <MinusCircle className="h-4 w-4 text-muted-foreground" />;
+}
 
 const CodeRisksSection = async ({ details }: Props) => {
   const t = await getTranslations("token");
@@ -20,53 +47,73 @@ const CodeRisksSection = async ({ details }: Props) => {
   }
 
   return (
-    <Card variant="transparent">
+    <Card
+      variant="transparent"
+      collapsible
+    >
       <CardHeader>
-        <CardTitle>{t("codeRisks.title")}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <LucideShieldAlert className="text-secondary" />
+            <span>{t("codeRisks.title")}</span>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <ul className="grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
-          <li>
+        <ul className="grid grid-cols-1 gap-2 text-sm md:grid-cols-3 md:[&>li]:pl-3 md:[&>li]:ml-3 md:[&>li:not(:nth-child(3n+1))]:border-l md:[&>li:nth-child(3n+1)]:pl-0 md:[&>li:nth-child(3n+1)]:ml-0">
+          <li className="flex items-center justify-between">
             {t("codeRisks.ownerOnlyFunctions")}:{" "}
-            {details.codeRisks.ownerOnlyFunctions
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderBoolean(details.codeRisks.ownerOnlyFunctions)}
           </li>
-          <li>
+          <li className="flex items-center justify-between">
+            {t("overview.isEOA")}: {renderBoolean(details.isEOA)}
+          </li>
+          <li className="flex items-center justify-between">
             {t("codeRisks.mintFunction")}:{" "}
-            {details.codeRisks.mintFunction
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderEitherBoolean(
+              details.codeRisks.mintFunction,
+              details.canMint,
+            )}
           </li>
-          <li>
+          <li className="flex items-center justify-between">
             {t("codeRisks.proxyPattern")}:{" "}
-            {details.codeRisks.proxyPattern
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderBoolean(details.codeRisks.proxyPattern)}
           </li>
-          <li>
+          <li className="flex items-center justify-between">
             {t("codeRisks.pauseFunction")}:{" "}
-            {details.codeRisks.pauseFunction
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderEitherBoolean(
+              details.codeRisks.pauseFunction,
+              details.canPause,
+            )}
           </li>
-          <li>
+          <li className="flex items-center justify-between">
             {t("codeRisks.unsafeExternalCalls")}:{" "}
-            {details.codeRisks.unsafeExternalCalls
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderBoolean(details.codeRisks.unsafeExternalCalls)}
           </li>
-          <li>
+          <li className="flex items-center justify-between">
             {t("codeRisks.blacklistFunctions")}:{" "}
-            {details.codeRisks.blacklistFunctionsDetected
-              ? t("overview.yes")
-              : t("overview.no")}
+            {renderEitherBoolean(
+              details.codeRisks.blacklistFunctionsDetected,
+              details.canBlacklist,
+            )}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.hasMultisig")}: {renderBoolean(details.hasMultisig)}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.hasTimelock")}: {renderBoolean(details.hasTimelock)}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.possibleSpam")}: {renderBoolean(details.possibleSpam)}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.renounced")}: {details.renounced ?? "-"}
           </li>
         </ul>
 
         {details.codeRisks.comments?.length ? (
           <div className="mt-3">
-            <h3 className="text-sm font-medium">{t("codeRisks.comments")}</h3>
+            <h3 className="text-lg font-medium">{t("codeRisks.comments")}:</h3>
             <ul className="mt-1 list-disc pl-5 text-sm">
               {details.codeRisks.comments.map((c, i) => (
                 <li key={i}>{c}</li>

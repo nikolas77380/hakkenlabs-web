@@ -54,7 +54,7 @@ const AnalyzeDescription = () => {
           className="relative flex-1 min-w-0 md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)]"
         >
           <CardHeader>
-            <div className="absolute top-[-40px] left-0">
+            <div className="absolute top-[-40px] right-0">
               <Image
                 src={feature.icon}
                 alt={feature.title}

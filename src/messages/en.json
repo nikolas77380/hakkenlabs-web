@@ -134,10 +134,23 @@
   "common": {
     "noResults": "No results"
   },
+  "progressModal": {
+    "title": "Analyzing token…",
+    "completed": "Completed:",
+    "steps": {
+      "collect": "Collecting token data",
+      "fundamental": "Running fundamental analysis",
+      "technical": "Running technical analysis",
+      "risks": "Assessing risks",
+      "preparation": "Last preparation"
+    }
+  },
   "token": {
     "notFound": "Token not found",
     "overview": {
       "title": "Overview",
+      "contract": "Contract",
+      "isEOA": "EOA",
       "dex": "DEX",
       "pair": "Pair",
       "decimals": "Decimals",
@@ -153,17 +166,11 @@
       "totalSupply": "Total Supply",
       "lastUpdated": "Last Updated",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "deployDate": "Deploy Date",
+      "categories": "Categories"
     },
-    "market": {
-      "title": "Market",
-      "price": "Price",
-      "marketCap": "Market Cap",
-      "fdv": "FDV",
-      "volume24h": "24h Volume",
-      "liquidity": "Liquidity",
-      "riskScore": "Risk Score"
-    },
+
     "holders": {
       "title": "Holders",
       "totalHolders": "Total Holders",
@@ -194,7 +201,11 @@
       "pauseFunction": "Pause Function",
       "unsafeExternalCalls": "Unsafe External Calls",
       "blacklistFunctions": "Blacklist Functions",
-      "comments": "Comments"
+      "comments": "Comments",
+      "hasMultisig": "Has Multisig",
+      "hasTimelock": "Has Timelock",
+      "renounced": "Renounced",
+      "possibleSpam": "Possible Spam"
     },
     "socials": {
       "title": "Socials",
@@ -215,7 +226,16 @@
       "verified": "Verified",
       "chain": "Chain",
       "lastUpdated": "Last Updated",
-      "riskScore": "Risk Score"
+      "riskScore": "Risk Score",
+      "market": {
+        "title": "Market",
+        "price": "Price",
+        "marketCap": "Market Cap",
+        "fdv": "FDV",
+        "volume24h": "24h Volume",
+        "liquidity": "Liquidity",
+        "riskScore": "Risk Score"
+      }
     },
     "description": {
       "title": "Description"

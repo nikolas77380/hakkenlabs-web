@@ -6,6 +6,7 @@ import {
 } from "@/components/common/ui/card";
 import SocialsLink from "@/components/common/ui/socialsLink";
 import { SocialLinks } from "@/services/api";
+import { Share2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import React from "react";
 
@@ -17,12 +18,20 @@ const SocialsSection = async ({ socials }: Props) => {
   const t = await getTranslations("token");
 
   return (
-    <Card variant="transparent">
+    <Card
+      variant="transparent"
+      collapsible
+    >
       <CardHeader>
-        <CardTitle>{t("socials.title")}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <Share2 className="text-secondary" />
+            <span>{t("socials.title")}</span>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap gap-3 text-sm">
+        <div className="flex flex-col gap-3 text-sm">
           <SocialsLink
             label={t("socials.website")}
             url={socials.website}

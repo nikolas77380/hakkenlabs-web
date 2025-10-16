@@ -28,6 +28,7 @@ import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { formatAddress } from "@/lib/utils";
 import { Button } from "@/components/common/ui/button";
+import AnalyzeProgressModal from "./AnalyzeProgressModal";
 
 const FormSchema = z.object({
   blockchain: z
@@ -59,6 +60,8 @@ const BLOCKCHAIN_NETWORKS = [
   },
 ];
 
+export const MINIMUM_DURATION_MS = 30000;
+
 const AnalyzeForm = () => {
   const t = useTranslations();
   const form = useForm<FormData>({
@@ -77,6 +80,9 @@ const AnalyzeForm = () => {
 
   const selectedChainId = form.watch("blockchain");
 
+  // Progress modal state
+  const [isProgressOpen, setIsProgressOpen] = useState(false);
+
   // Debounce search query
   const debouncedQuery = useMemo(() => searchQuery.trim(), [searchQuery]);
   const effectiveQuery = debouncedQuery.length >= 2 ? debouncedQuery : "";
@@ -93,16 +99,22 @@ const AnalyzeForm = () => {
 
   async function onSubmit(data: FormData) {
     try {
+      const startTime = Date.now();
+      setIsProgressOpen(true);
       const email = "cepuii@example.com"; // stub until email field is added
 
       const res = await api.getTokenReport(data.contractAddress, email, locale);
       if (res) {
         const target = `/token/${encodeURIComponent(data.contractAddress)}`;
-        router.push(target);
+        setTimeout(() => {
+          router.push(target);
+        }, startTime + MINIMUM_DURATION_MS - Date.now());
       } else {
+        setIsProgressOpen(false);
         toast(t("common.error"));
       }
     } catch (error) {
+      setIsProgressOpen(false);
       toast(t("common.error"));
       console.error(error);
     }
@@ -168,7 +180,7 @@ const AnalyzeForm = () => {
                         "analyzeForm.placeholders.contractAddress",
                       )}
                       inputMode="text"
-                      className="min-w-[380px]"
+                      className="min-w-[390px]"
                       value={searchQuery || field.value}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -260,15 +272,13 @@ const AnalyzeForm = () => {
             type="submit"
             variant="secondary"
             className="md:w-auto w-full"
-            disabled={form.formState.isSubmitting}
+            disabled={form.formState.isSubmitting || isProgressOpen}
           >
-            {form.formState.isSubmitting ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              t("analyzeForm.cta")
-            )}
+            {t("analyzeForm.cta")}
           </Button>
         </div>
+        {/* Progress Modal */}
+        <AnalyzeProgressModal isOpen={isProgressOpen} />
       </form>
     </Form>
   );

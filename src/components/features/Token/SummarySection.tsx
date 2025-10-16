@@ -7,6 +7,7 @@ import {
 import MarkdownView from "./MarkdownView/MarkdownView";
 import { getTranslations } from "next-intl/server";
 import React from "react";
+import { ClipboardList } from "lucide-react";
 
 type Props = {
   summary: string;
@@ -14,11 +15,18 @@ type Props = {
 
 const SummarySection = async ({ summary }: Props) => {
   const t = await getTranslations("token");
-  console.log(summary);
   return (
-    <Card variant="transparent">
+    <Card
+      variant="transparent"
+      collapsible
+    >
       <CardHeader>
-        <CardTitle>{t("summary.title")}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-2">
+            <ClipboardList className="text-secondary" />
+            <span>{t("summary.title")}</span>
+          </div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="text-sm">

@@ -130,11 +130,9 @@ const StarryLayer = ({
     let raf = 0;
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
-    const start = performance.now();
     const cache = trigCache.current;
 
     // Adjust parameters for low-end devices
-    const puffs = isLowEnd ? 12 : 24;
     const maxStreaks = isLowEnd ? 3 : 8;
 
     const spawnShootingStar = () => {
@@ -161,7 +159,6 @@ const StarryLayer = ({
 
     const draw = () => {
       const now = performance.now();
-      const t = (now - start) / 1000;
       const dt = Math.min(0.05, (now - lastTime.current) / 1000);
       lastTime.current = now;
 
@@ -169,80 +166,9 @@ const StarryLayer = ({
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Background gradient (cached)
-      const g = ctx.createRadialGradient(
-        w * 0.5,
-        h * 0.6,
-        h * 0.1,
-        w * 0.5,
-        h * 0.6,
-        Math.max(w, h),
-      );
-      g.addColorStop(0, "#0b1220");
-      g.addColorStop(1, "#070c16");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-
-      // Nebula puffs with cached trig calculations
-      for (let i = 0; i < puffs; i++) {
-        const a = i * 123.456;
-        const x = (cache.sin(t * 0.02 + a) * 0.4 + 0.5) * w;
-        const y = (cache.cos(t * 0.015 + a * 1.1) * 0.25 + 0.45) * h;
-        const r = (cache.sin(i * 2.1) * 0.5 + 0.7) * (Math.max(w, h) * 0.12);
-
-        const grd = ctx.createRadialGradient(x, y, 0, x, y, r);
-        grd.addColorStop(0, `rgba(90,110,160,${0.08 * intensity})`);
-        grd.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.globalCompositeOperation = "lighter";
-        ctx.fillStyle = grd;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.globalCompositeOperation = "source-over";
-
       // Shooting stars
       if (rand.current() < (shootingRatePerMin / 60) * dt * 2) {
         spawnShootingStar();
-      }
-
-      // Update and draw streaks
-      for (let i = streaks.current.length - 1; i >= 0; i--) {
-        const s = streaks.current[i];
-        s.age += dt;
-        s.x += s.vx * dt;
-        s.y += s.vy * dt;
-        const p = Math.min(1, s.age / s.life);
-        const alpha = (1 - p) * 0.7;
-        const tail = s.len * (1 - p);
-
-        // Draw streak
-        const angle = Math.atan2(s.vy, s.vx);
-        const tx = cache.cos(angle) * tail;
-        const ty = cache.sin(angle) * tail;
-        const x2 = s.x - tx;
-        const y2 = s.y - ty;
-
-        const grd = ctx.createLinearGradient(s.x, s.y, x2, y2);
-        grd.addColorStop(0, `rgba(255,255,255,${alpha})`);
-        grd.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.strokeStyle = grd;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(s.x, s.y);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-
-        // Remove expired streaks
-        if (
-          p >= 1 ||
-          s.x < -200 ||
-          s.x > w + 200 ||
-          s.y < -200 ||
-          s.y > h + 200
-        ) {
-          streaks.current.splice(i, 1);
-        }
       }
 
       raf = requestAnimationFrame(draw);
@@ -441,7 +367,6 @@ const StarrySky = ({
 
   return (
     <div className="absolute inset-0 -z-10">
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 to-background-2/90 -z-10 pointer-events-none" />
       <div className={`relative ${className}`}>
         {/* Accessibility label for screen readers */}
         <span className="sr-only">
@@ -462,10 +387,13 @@ const StarrySky = ({
           aria-hidden
         >
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 -z-10 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.9) 100%)",
+              background: `
+            radial-gradient(ellipse at 50% 120%, #0b1220 40%, #070c16 85%, #000 100%),
+            radial-gradient(ellipse at 70% 30%, rgba(90, 110, 160, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 30% 60%, rgba(70, 90, 140, 0.1) 0%, transparent 50%)
+          `,
             }}
           />
         </div>

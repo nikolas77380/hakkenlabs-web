@@ -17,6 +17,8 @@ interface HolderChangePoint {
   changePercent: number;
 }
 
+const LINE_COLOR = "#2563eb";
+
 export interface HoldersChangeChartProps {
   title?: string;
   holderChange?:
@@ -88,18 +90,26 @@ export function HoldersChangeChart({
             allowDecimals
           />
           <Tooltip
+            cursor={false}
             formatter={(value: unknown, name: string) => {
               if (name === "holders") return [value as number, "Holders"];
               if (name === "changePercent")
                 return [formatPercent(value as number), "Change %"];
-              return [value as number, "Δ Holders"];
+              return [value as number, "Holders"];
             }}
             labelFormatter={(label) => `Window: ${label}`}
+            contentStyle={{
+              backgroundColor: "#0b1220",
+              border: "none",
+              borderRadius: "0.5rem",
+              padding: "0.3rem",
+            }}
           />
           <Bar
             dataKey="holders"
-            fill="#2563eb"
+            fill={LINE_COLOR}
             name="Holders"
+            background={{ fill: "transparent" }}
           />
         </BarChart>
       </ResponsiveContainer>

@@ -17,7 +17,7 @@ export interface HolderSupplyChartProps {
   holderSupply?: HoldersSupply;
 }
 
-const LINE_COLOR = "#2563eb";
+const LINE_COLOR = "#fdf500";
 
 export function HolderSupplyChart({
   title = "Supply concentration",
@@ -59,11 +59,18 @@ export function HolderSupplyChart({
             tick={{ fontSize: 12 }}
           />
           <Tooltip
+            cursor={false}
             formatter={(value: unknown) => [
               `${Number(value).toFixed(2)}%`,
               "Percent",
             ]}
             labelFormatter={(label) => `Bucket: ${label}`}
+            contentStyle={{
+              backgroundColor: "#0b1220",
+              border: "none",
+              borderRadius: "0.5rem",
+              padding: "0.3rem",
+            }}
           />
           <Bar
             dataKey="value"

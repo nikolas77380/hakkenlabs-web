@@ -19,25 +19,25 @@ export function MarkdownView({
         components={{
           p: (props) => (
             <p
-              className="my-4 leading-relaxed indent-8"
+              className="my-4 pl-2 leading-relaxed indent-8"
               {...props}
             />
           ),
           h1: (props) => (
             <h1
-              className="mt-0 mb-4 pl-2 text-2xl font-semibold"
+              className="mt-0 mb-4 text-3xl font-semibold"
               {...props}
             />
           ),
           h2: (props) => (
             <h2
-              className="mt-6 mb-3 pl-2 text-xl font-semibold"
+              className="mt-6 mb-3  text-2xl font-semibold"
               {...props}
             />
           ),
           h3: (props) => (
             <h3
-              className="mt-5 mb-2 pl-2 text-lg font-semibold"
+              className="mt-5 mb-2 text-2xl font-semibold"
               {...props}
             />
           ),

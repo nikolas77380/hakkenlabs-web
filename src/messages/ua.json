@@ -134,10 +134,23 @@
   "common": {
     "noResults": "Немає результатів"
   },
+  "progressModal": {
+    "title": "Йде аналіз токена…",
+    "completed": "Завершено:",
+    "steps": {
+      "collect": "Збираємо дані про токен",
+      "fundamental": "Проводимо фундаментальний аналіз",
+      "technical": "Проводимо технічний аналіз",
+      "risks": "Оцінюємо ризики",
+      "preparation": "Остання підготовка"
+    }
+  },
   "token": {
     "notFound": "Токен не знайдено",
     "overview": {
       "title": "Огляд",
+      "contract": "Контракт",
+      "isEOA": "EOA",
       "dex": "DEX",
       "pair": "Пара",
       "decimals": "Десяткові",
@@ -153,7 +166,9 @@
       "totalSupply": "Загальна пропозиція",
       "lastUpdated": "Останнє оновлення",
       "yes": "Так",
-      "no": "Ні"
+      "no": "Ні",
+      "deployDate": "Дата деплою",
+      "categories": "Категорії"
     },
     "market": {
       "title": "Ринок",
@@ -194,7 +209,11 @@
       "pauseFunction": "Функція паузи",
       "unsafeExternalCalls": "Небезпечні зовнішні виклики",
       "blacklistFunctions": "Функції блокування",
-      "comments": "Коментарі"
+      "comments": "Коментарі",
+      "hasMultisig": "Має мультипідпис",
+      "hasTimelock": "Має таймлок",
+      "renounced": "Відмовлено",
+      "possibleSpam": "Можливий спам"
     },
     "socials": {
       "title": "Соцмережі",
@@ -215,7 +234,16 @@
       "verified": "Верифіковано",
       "chain": "Мережа",
       "lastUpdated": "Останнє оновлення",
-      "riskScore": "Ризик-скоринг"
+      "riskScore": "Ризик-скоринг",
+      "market": {
+        "title": "Ринок",
+        "price": "Ціна",
+        "marketCap": "Капіталізація",
+        "fdv": "FDV",
+        "volume24h": "Об'єм 24г",
+        "liquidity": "Ліквідність",
+        "riskScore": "Ризик-скоринг"
+      }
     },
     "description": {
       "title": "Опис"
