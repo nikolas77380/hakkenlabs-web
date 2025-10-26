@@ -116,20 +116,17 @@ const CodeRisksSection = async ({ details }: Props) => {
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.possibleSpam")}:{" "}
-            {renderBoolean(details.possibleSpam, true)}
+            {renderBoolean(
+              details.possibleSpam ||
+                !!details.codeRisks.honeypotIndicators?.length,
+              true,
+            )}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.hasOwnership")}: {renderBoolean(!!details.owner)}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.isRenounced")}: {renderBoolean(details.renounced)}
-          </li>
-          <li className="flex items-center justify-between">
-            {t("codeRisks.isHoneypot")}:{" "}
-            {renderBoolean(
-              !!details.codeRisks.honeypotIndicators?.length,
-              true,
-            )}
           </li>
         </ul>
 
