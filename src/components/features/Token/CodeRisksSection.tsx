@@ -18,10 +18,13 @@ type Props = {
   details: TokenDetailsResponse;
 };
 
-function renderBoolean(value: boolean | null | undefined) {
+function renderBoolean(value: boolean | null | undefined, inverted?: boolean) {
   if (value === null || value === undefined)
     return <MinusCircle className="h-4 w-4 text-muted-foreground" />;
-  return value ? (
+
+  const finalValue = inverted ? !value : value;
+
+  return finalValue ? (
     <CheckCircle2 className="h-4 w-4 text-green-500" />
   ) : (
     <XCircle className="h-4 w-4 text-red-500" />
@@ -31,10 +34,14 @@ function renderBoolean(value: boolean | null | undefined) {
 function renderEitherBoolean(
   a: boolean | null | undefined,
   b: boolean | null | undefined,
+  inverted?: boolean,
 ) {
-  if (a === true || b === true)
+  const finalA = inverted ? !a : a;
+  const finalB = inverted ? !b : b;
+
+  if (finalA === true || finalB === true)
     return <CheckCircle2 className="h-4 w-4 text-green-500" />;
-  if (a === false && b === false)
+  if (finalA === false && finalB === false)
     return <XCircle className="h-4 w-4 text-red-500" />;
   return <MinusCircle className="h-4 w-4 text-muted-foreground" />;
 }
@@ -66,13 +73,14 @@ const CodeRisksSection = async ({ details }: Props) => {
             {renderBoolean(details.codeRisks.ownerOnlyFunctions)}
           </li>
           <li className="flex items-center justify-between">
-            {t("overview.isEOA")}: {renderBoolean(details.isEOA)}
+            {t("overview.isEOA")}: {renderBoolean(details.isEOA, true)}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.mintFunction")}:{" "}
             {renderEitherBoolean(
               details.codeRisks.mintFunction,
               details.canMint,
+              true,
             )}
           </li>
           <li className="flex items-center justify-between">
@@ -84,30 +92,44 @@ const CodeRisksSection = async ({ details }: Props) => {
             {renderEitherBoolean(
               details.codeRisks.pauseFunction,
               details.canPause,
+              true,
             )}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.unsafeExternalCalls")}:{" "}
-            {renderBoolean(details.codeRisks.unsafeExternalCalls)}
+            {renderBoolean(details.codeRisks.unsafeExternalCalls, true)}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.blacklistFunctions")}:{" "}
             {renderEitherBoolean(
               details.codeRisks.blacklistFunctionsDetected,
               details.canBlacklist,
+              true,
             )}
           </li>
           <li className="flex items-center justify-between">
-            {t("codeRisks.hasMultisig")}: {renderBoolean(details.hasMultisig)}
+            {t("codeRisks.hasMultisig")}:{" "}
+            {renderBoolean(details.hasMultisig, true)}
           </li>
           <li className="flex items-center justify-between">
             {t("codeRisks.hasTimelock")}: {renderBoolean(details.hasTimelock)}
           </li>
           <li className="flex items-center justify-between">
-            {t("codeRisks.possibleSpam")}: {renderBoolean(details.possibleSpam)}
+            {t("codeRisks.possibleSpam")}:{" "}
+            {renderBoolean(details.possibleSpam, true)}
           </li>
           <li className="flex items-center justify-between">
-            {t("codeRisks.renounced")}: {details.renounced ?? "-"}
+            {t("codeRisks.hasOwnership")}: {renderBoolean(!!details.owner)}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.isRenounced")}: {renderBoolean(details.renounced)}
+          </li>
+          <li className="flex items-center justify-between">
+            {t("codeRisks.isHoneypot")}:{" "}
+            {renderBoolean(
+              !!details.codeRisks.honeypotIndicators?.length,
+              true,
+            )}
           </li>
         </ul>
 

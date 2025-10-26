@@ -213,7 +213,10 @@
       "hasMultisig": "Має мультипідпис",
       "hasTimelock": "Має таймлок",
       "renounced": "Відмовлено",
-      "possibleSpam": "Можливий спам"
+      "possibleSpam": "Можливий спам",
+      "hasOwnership": "Має власника",
+      "isRenounced": "Відмовлено від власності",
+      "isHoneypot": "Є Honeypot"
     },
     "socials": {
       "title": "Соцмережі",

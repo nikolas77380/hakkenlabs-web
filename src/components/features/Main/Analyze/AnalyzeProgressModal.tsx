@@ -23,6 +23,7 @@ export function AnalyzeProgressModal({ isOpen }: AnalyzeProgressModalProps) {
   );
 
   useEffect(() => {
+    if (!isOpen) return;
     document.body.style.overflow = "hidden";
     const startTime = Date.now();
     let rafId = 0;

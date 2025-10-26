@@ -10,10 +10,10 @@ export default async function Home() {
   const t = await getTranslations();
 
   return (
-    <div className="relative overflow-hidden">
-      <StarrySky className="h-full w-full z-0" />
+    <div className="relative min-h-screen">
+      <StarrySky className="h-full w-full" />
       <Header />
-      <main className="w-full">
+      <main className="w-full pb-6">
         <section className="min-h-[calc(100vh-100px)] lg:max-h-[1200px] flex flex-col items-center justify-evenly text-center space-y-2 px-6">
           <div className="flex flex-col items-center justify-center gap-8">
             <h1 className="text-5xl md:text-4xl font-bold tracking-tight">

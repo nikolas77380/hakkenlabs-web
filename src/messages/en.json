@@ -205,7 +205,10 @@
       "hasMultisig": "Has Multisig",
       "hasTimelock": "Has Timelock",
       "renounced": "Renounced",
-      "possibleSpam": "Possible Spam"
+      "possibleSpam": "Possible Spam",
+      "hasOwnership": "Has Ownership",
+      "isRenounced": "Is Renounced",
+      "isHoneypot": "Is Honeypot"
     },
     "socials": {
       "title": "Socials",

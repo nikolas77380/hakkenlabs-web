@@ -49,10 +49,7 @@ export default async function TokenPage({
 
   return (
     <div className="h-screen w-full relative overflow-hidden">
-      <Header
-        maxWidth="1480px"
-        showLocaleSwitcher={false}
-      />
+      <Header maxWidth="1480px" />
       <StarrySky className="h-full w-full z-0" />
       <div className="relative w-[97%] mx-auto h-px bg-secondary">
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-3 bg-secondary/30 blur-xl" />
