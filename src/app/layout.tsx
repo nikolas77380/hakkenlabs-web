@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { QueryProvider } from "@/services/query/QueryProvider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -31,7 +32,7 @@ export default async function RootLayout({
           locale={locale}
           messages={messages}
         >
-          {children}
+          <QueryProvider>{children}</QueryProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>

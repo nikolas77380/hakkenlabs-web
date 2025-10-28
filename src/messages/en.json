@@ -9,19 +9,17 @@
     }
   },
   "analyzeForm": {
-    "labels": {
-      "blockchain": "Select Blockchain",
-      "contractAddress": "Contract Address"
-    },
     "placeholders": {
       "blockchain": "Select blockchain",
-      "contractAddress": "0x..."
+      "contractAddress": "Token (name, symbol, address 0x...)"
     },
     "options": {
       "ethereum": "Ethereum (ETH)",
       "polygon": "Polygon (MATIC)",
       "bsc": "Binance Smart Chain (BNB)",
-      "arbitrum": "Arbitrum (ARB)"
+      "arbitrum": "Arbitrum (ARB)",
+      "solana": "Solana (SOL)",
+      "comingSoon": "(Coming soon)"
     },
     "cta": "Analyze Token",
     "toast": {
@@ -31,9 +29,9 @@
     "errors": {
       "blockchainRequired": "Please select a blockchain.",
       "blockchainMin": "Blockchain is required",
-      "addressRequired": "Please enter a contract address.",
-      "addressMin": "Contract address must be at least 42 characters",
-      "addressInvalid": "Invalid Ethereum contract address format"
+      "addressRequired": "Please enter a token info.",
+      "addressMin": "Should be at least 2 characters",
+      "addressInvalid": "Invalid token info"
     }
   },
   "analyzeDescription": {
@@ -120,17 +118,130 @@
     "title": "Full Web Platform",
     "desc1": "We're building a comprehensive web platform with advanced features, detailed analytics, and portfolio tracking tools.",
     "desc2": "Currently, HakkenLabs is available as a Telegram bot. Get instant token analysis and risk scores directly in your messaging app.",
-    "ctaInfo": "Want early access to our web platform? Subscribe to our Telegram bot and be the first to know when we launch!",
-    "cta": "Subscribe to Telegram Bot"
+    "ctaInfo": "Want early access to our web platform? Join our Telegram bot and be the first to know when we launch!",
+    "cta": "Join Telegram Bot"
   },
   "subscribe": {
     "title": "Stay Updated",
     "desc": "Get the latest crypto insights, platform updates, and be the first to know when we launch new features",
     "placeholder": "your.email@example.com",
     "cta": "Subscribe",
-    "footnote": "Join 5,000+ crypto enthusiasts who trust HakkenLabs for market insights. Unsubscribe anytime."
+    "footnote": "Subscribe to HakkenLabs updates and get the latest news first. Unsubscribe anytime."
   },
   "header": {
     "cta": "Join Telegram Bot"
+  },
+  "common": {
+    "noResults": "No results"
+  },
+  "progressModal": {
+    "title": "Analyzing token…",
+    "completed": "Completed:",
+    "steps": {
+      "collect": "Collecting token data",
+      "fundamental": "Running fundamental analysis",
+      "technical": "Running technical analysis",
+      "risks": "Assessing risks",
+      "preparation": "Last preparation"
+    }
+  },
+  "token": {
+    "notFound": "Token not found",
+    "overview": {
+      "title": "Overview",
+      "contract": "Contract",
+      "isEOA": "EOA",
+      "dex": "DEX",
+      "pair": "Pair",
+      "decimals": "Decimals",
+      "owner": "Owner",
+      "proxy": "Proxy",
+      "renounced": "Renounced",
+      "canMint": "Can Mint",
+      "canPause": "Can Pause",
+      "canBlacklist": "Can Blacklist",
+      "hasMultisig": "Has Multisig",
+      "hasTimelock": "Has Timelock",
+      "timelockDelay": "Timelock Delay",
+      "totalSupply": "Total Supply",
+      "lastUpdated": "Last Updated",
+      "yes": "Yes",
+      "no": "No",
+      "deployDate": "Deploy Date",
+      "categories": "Categories"
+    },
+
+    "holders": {
+      "title": "Holders",
+      "totalHolders": "Total Holders",
+      "change7d": "Change 7d",
+      "change30d": "Change 30d",
+      "recentChanges": "Recent Changes",
+      "supplyConcentration": "Supply Concentration",
+      "distribution": "Holder Distribution",
+      "byAcquisition": "By Acquisition",
+      "noDistributionData": "No distribution data.",
+      "maxConcentration": "Max Concentration: {group} - {percent}%",
+      "minConcentration": "Min Concentration: {group} - {percent}%",
+      "groups": {
+        "shrimps": "Shrimps",
+        "fish": "Fish",
+        "crabs": "Crabs",
+        "octopus": "Octopus",
+        "dolphins": "Dolphins",
+        "sharks": "Sharks",
+        "whales": "Whales"
+      }
+    },
+    "codeRisks": {
+      "title": "Code Risks",
+      "ownerOnlyFunctions": "Owner-only Functions",
+      "mintFunction": "Mint Function",
+      "proxyPattern": "Proxy Pattern",
+      "pauseFunction": "Pause Function",
+      "unsafeExternalCalls": "Unsafe External Calls",
+      "blacklistFunctions": "Blacklist Functions",
+      "comments": "Comments",
+      "hasMultisig": "Has Multisig",
+      "hasTimelock": "Has Timelock",
+      "renounced": "Renounced",
+      "possibleSpam": "Possible Spam",
+      "hasOwnership": "Has Ownership",
+      "isRenounced": "Is Renounced",
+      "isHoneypot": "Is Honeypot"
+    },
+    "socials": {
+      "title": "Socials",
+      "website": "Website",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "reddit": "Reddit",
+      "discord": "Discord",
+      "github": "GitHub",
+      "medium": "Medium",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "summary": {
+      "title": "Summary"
+    },
+    "header": {
+      "verified": "Verified",
+      "chain": "Chain",
+      "lastUpdated": "Last Updated",
+      "riskScore": "Risk Score",
+      "market": {
+        "title": "Market",
+        "price": "Price",
+        "marketCap": "Market Cap",
+        "fdv": "FDV",
+        "volume24h": "24h Volume",
+        "liquidity": "Liquidity",
+        "riskScore": "Risk Score"
+      }
+    },
+    "description": {
+      "title": "Description"
+    }
   }
 }
